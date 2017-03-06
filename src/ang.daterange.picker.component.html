@@ -1,0 +1,64 @@
+<div class="ang-daterange-picker" style="min-height: 328px; position: relative; width: 810px;">
+
+    <md-card style="width:100%;min-height:328px;padding-top:1px;">
+
+      <div style="position: fixed; width: 180px; height: 300px;">
+        <table style="margin-top: 1.9em; width:100%;">
+          <tr>
+            <td>FROM</td>
+          </tr>
+          <tr>
+            <td>
+              <md-input-container style="width:100%">
+                <input mdInput disabled value="" [(ngModel)]="startDateText">
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+            <td>TO</td>
+          </tr>
+          <tr>
+            <td>
+              <md-input-container style="width:100%">
+                <input mdInput disabled value="" [(ngModel)]="endDateText">
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
+        <div style="bottom:0px;">
+          <table style="width:100%">
+            <tr>
+              <td>
+                  <button md-button
+                          [disabled]="!startDateText || !endDateText"
+                          color="primary"
+                          (click)="onApplySelectedDateRange()">Apply
+                  </button>
+              </td>
+              <td>
+                  <button md-button
+                          (click)="onCloseContextualMenu()">Cancel
+                  </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div style="margin-left:180px">
+        <ang-datepicker [(date)]="startDate"
+                        (onSelect)="onSelectStartDate($event)"
+                        dateFormat="YYYY-MM-DD"
+                        [endDate]="endDate"
+                        [startDate]="startDate">
+        </ang-datepicker>
+        <ang-datepicker [(date)]="endDate"
+                        (onSelect)="onSelectEndDate($event)"
+                        dateFormat="YYYY-MM-DD"
+                        [endDate]="endDate"
+                        [startDate]="startDate">
+        </ang-datepicker>
+      </div>
+
+    </md-card>
+
+</div>
