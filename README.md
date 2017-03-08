@@ -9,7 +9,7 @@ No jQuery dependent. No Bootstrap CSS dependent.
 
 ### Installation
 ```
-npm install ng2-daterange-picker
+npm install ng2-daterange-picker --save
 ```
 ### Usage
 Import the DaterangePicker Module and add it to the `imports` of your module
