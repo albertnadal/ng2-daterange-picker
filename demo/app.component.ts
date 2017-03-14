@@ -1,39 +1,12 @@
-# Angular 2 Material Daterange picker
-
-[![Version](http://img.shields.io/npm/v/ng2-daterange-picker.svg)](https://www.npmjs.org/package/ng2-daterange-picker)
-
-A minimalist daterange picker component for Angular 2 based on Material.
-No jQuery dependent. No Bootstrap CSS dependent.
-
-![](http://www.lafruitera.com/ng2-daterange-picker.gif)
-
-### Installation
-```
-npm install ng2-daterange-picker --save
-```
-### Usage
-Import the DaterangePicker Module and add it to the `imports` of your module
-```
-import { DaterangePickerModule } from 'ng2-daterange-picker'
-
-@NgModule({
-  imports: [ DaterangePickerModule ],
-  declarations: [ ... ],
-  bootstrap: [ ... ]
-})
-export class YourModule { }
-```
-Use dinamically the ng2-daterange-picker selector as described in the sample component below
-```
 import { Component, ViewContainerRef, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { DaterangePickerComponent } from 'ng2-daterange-picker';
 
 @Component({
-  selector: 'my-component-selector',
+  selector: 'app-root',
   entryComponents: [DaterangePickerComponent],
   template: '<button #daterangePicker type="button" (click)="showDaterangePickerSelector()">Select a range</button>'
 })
-export class MyComponent {
+export class AppComponent {
 
   @ViewChild('daterangePicker', { read: ViewContainerRef }) daterangePickerParentViewContainer: ViewContainerRef;
 
@@ -51,12 +24,8 @@ export class MyComponent {
   }
 
   showSelectedDaterange(startDate: Date, endDate: Date) {
-    console.log(startDate);
-    console.log(endDate);
+    alert("FROM: "+startDate.toString());
+    alert("TO: "+endDate.toString());
   }
 
 }
-```
-
-### License
-MIT
