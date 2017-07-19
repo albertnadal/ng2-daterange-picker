@@ -41,12 +41,16 @@ export class DaterangePickerComponent implements OnInit {
 
   onApplySelectedDateRange() {
     this.onSelectedDaterange.emit({startDate: this.startDate, endDate: this.endDate});
-    this.selfComponentRef.destroy();
+    this.destroyComponentRef();
   }
 
   onCloseContextualMenu() {
     this.onCloseDaterangePicker.emit();
-    this.selfComponentRef.destroy();
+    this.destroyComponentRef();
+  }
+  
+  destroyComponentRef() {
+    if (this.selfComponentRef) this.selfComponentRef.destroy();
   }
 
   setComponentRef(_componentRef: ComponentRef<any>) {
