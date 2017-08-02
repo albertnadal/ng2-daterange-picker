@@ -8,11 +8,11 @@ import { DatePickerComponent } from './ang.datepicker.component'
 })
 export class DaterangePickerComponent implements OnInit {
 
-  private startDate: Date;
-  private endDate: Date;
+  public startDate: Date;
+  public endDate: Date;
   private el: ElementRef;
-  private startDateText: string = '';
-  private endDateText: string = '';
+  public startDateText: string = '';
+  public endDateText: string = '';
   private selfComponentRef: ComponentRef<any>;
 
   @Output() onCloseDaterangePicker: EventEmitter<any> = new EventEmitter<any>();
@@ -48,7 +48,7 @@ export class DaterangePickerComponent implements OnInit {
     this.onCloseDaterangePicker.emit();
     this.destroyComponentRef();
   }
-  
+
   destroyComponentRef() {
     if (this.selfComponentRef) this.selfComponentRef.destroy();
   }
