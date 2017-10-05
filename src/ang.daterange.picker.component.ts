@@ -29,12 +29,12 @@ export class DaterangePickerComponent implements OnInit {
 
   }
 
-  onSelectStartDate($event) {
+  onSelectStartDate($event: any) {
     this.startDate = $event.date;
     this.startDateText = $event.dateText;
   }
 
-  onSelectEndDate($event) {
+  onSelectEndDate($event: any) {
     this.endDate = $event.date;
     this.endDateText = $event.dateText;
   }
