@@ -9,9 +9,9 @@
           </tr>
           <tr>
             <td>
-              <mat-input-container style="width:100%">
-                <input mdInput disabled value="" [(ngModel)]="startDateText">
-              </mat-input-container>
+              <mat-form-field style="width:100%">
+                <input matInput disabled value="" [(ngModel)]="startDateText">
+              </mat-form-field>
             </td>
           </tr>
           <tr>
@@ -19,9 +19,9 @@
           </tr>
           <tr>
             <td>
-              <mat-input-container style="width:100%">
-                <input mdInput disabled value="" [(ngModel)]="endDateText">
-              </mat-input-container>
+              <mat-form-field style="width:100%">
+                <input matInput disabled value="" [(ngModel)]="endDateText">
+              </mat-form-field>
             </td>
           </tr>
         </table>
@@ -29,14 +29,14 @@
           <table style="width:100%">
             <tr>
               <td>
-                  <button md-button
+                  <button mat-button
                           [disabled]="!startDateText || !endDateText"
                           color="primary"
                           (click)="onApplySelectedDateRange()">Apply
                   </button>
               </td>
               <td>
-                  <button md-button
+                  <button mat-button
                           (click)="onCloseContextualMenu()">Cancel
                   </button>
               </td>
