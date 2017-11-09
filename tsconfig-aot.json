@@ -9,7 +9,7 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "types": [ "core-js" ],
+    "types": [ "core-js" , "jasmine" ],
     "lib": ["es2015", "es2017", "dom"],
     "typeRoots": [
       "./node_modules/@types"
