@@ -1,7 +1,10 @@
-import { Component, ComponentRef, ElementRef, OnInit, Input, Output, EventEmitter, ViewContainerRef } from '@angular/core';
-import { DatePickerComponent } from './ang.datepicker.component';
-var DaterangePickerComponent = /** @class */ (function () {
+import { Component, ElementRef, Output, EventEmitter } from '@angular/core';
+var DaterangePickerComponent = (function () {
     function DaterangePickerComponent(_el) {
+        this.startDateText = '';
+        this.endDateText = '';
+        this.onCloseDaterangePicker = new EventEmitter();
+        this.onSelectedDaterange = new EventEmitter();
         this.el = _el;
         this.el.nativeElement.style.position = 'absolute';
         this.startDate = new Date();
@@ -66,6 +69,21 @@ var DaterangePickerComponent = /** @class */ (function () {
             case 'top': return _viewContainer.element.nativeElement.offsetTop;
             default: return 0;
         }
+    };
+    DaterangePickerComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ang-daterange-picker',
+                    templateUrl: './ang.daterange.picker.component.html',
+                    styleUrls: ['./ang.daterange.picker.component.css']
+                },] },
+    ];
+    /** @nocollapse */
+    DaterangePickerComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+    ]; };
+    DaterangePickerComponent.propDecorators = {
+        "onCloseDaterangePicker": [{ type: Output },],
+        "onSelectedDaterange": [{ type: Output },],
     };
     return DaterangePickerComponent;
 }());

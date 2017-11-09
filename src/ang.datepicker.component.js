@@ -1,11 +1,16 @@
-import { animate, Component, ElementRef, EventEmitter, Input, keyframes, OnChanges, OnInit, Output, Renderer, SimpleChange, state, style, transition, trigger } from '@angular/core';
+import { animate, Component, ElementRef, EventEmitter, Input, keyframes, Output, Renderer, style, transition, trigger } from '@angular/core';
 import { Calendar } from './ang.calendar';
 import * as moment from 'moment';
-var DatePickerComponent = /** @class */ (function () {
+var DatePickerComponent = (function () {
     function DatePickerComponent(renderer, elementRef) {
         var _this = this;
         this.renderer = renderer;
         this.elementRef = elementRef;
+        this.DEFAULT_FORMAT = 'YYYY-MM-DD';
+        this.dateChange = new EventEmitter();
+        this.weekStart = 0;
+        this.dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        this.onSelect = new EventEmitter();
         this.dateFormat = this.DEFAULT_FORMAT;
         this.colors = {
             'black': '#333333',
@@ -227,6 +232,57 @@ var DatePickerComponent = /** @class */ (function () {
         var _this = this;
         this.animate = direction;
         setTimeout(function () { return _this.animate = 'reset'; }, 185);
+    };
+    DatePickerComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ang-datepicker',
+                    animations: [
+                        trigger('calendarAnimation', [
+                            transition('* => left', [
+                                animate(180, keyframes([
+                                    style({ transform: 'translateX(105%)', offset: 0.5 }),
+                                    style({ transform: 'translateX(-130%)', offset: 0.51 }),
+                                    style({ transform: 'translateX(0)', offset: 1 })
+                                ]))
+                            ]),
+                            transition('* => right', [
+                                animate(180, keyframes([
+                                    style({ transform: 'translateX(-105%)', offset: 0.5 }),
+                                    style({ transform: 'translateX(130%)', offset: 0.51 }),
+                                    style({ transform: 'translateX(0)', offset: 1 })
+                                ]))
+                            ])
+                        ])
+                    ],
+                    templateUrl: './ang.datepicker.component.html',
+                    styleUrls: ['./ang.datepicker.component.css']
+                },] },
+    ];
+    /** @nocollapse */
+    DatePickerComponent.ctorParameters = function () { return [
+        { type: Renderer, },
+        { type: ElementRef, },
+    ]; };
+    DatePickerComponent.propDecorators = {
+        "dateChange": [{ type: Output },],
+        "date": [{ type: Input },],
+        "startDate": [{ type: Input },],
+        "endDate": [{ type: Input },],
+        "disabled": [{ type: Input },],
+        "accentColor": [{ type: Input },],
+        "altInputStyle": [{ type: Input },],
+        "dateFormat": [{ type: Input },],
+        "fontFamily": [{ type: Input },],
+        "rangeStart": [{ type: Input },],
+        "rangeEnd": [{ type: Input },],
+        "inputText": [{ type: Input },],
+        "weekStart": [{ type: Input },],
+        "calendarDays": [{ type: Input },],
+        "currentMonth": [{ type: Input },],
+        "dayNames": [{ type: Input },],
+        "hoveredDay": [{ type: Input },],
+        "months": [{ type: Input },],
+        "onSelect": [{ type: Output },],
     };
     return DatePickerComponent;
 }());

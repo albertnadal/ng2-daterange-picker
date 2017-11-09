@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
-var daterange_picker_module_1 = require("../src/daterange.picker.module");
+var ng2_daterange_picker_1 = require("ng2-daterange-picker");
 var app_component_1 = require("./app.component");
 var AppModule = (function () {
     function AppModule() {
@@ -18,7 +18,7 @@ var AppModule = (function () {
             declarations: [app_component_1.AppComponent],
             imports: [
                 platform_browser_1.BrowserModule,
-                daterange_picker_module_1.DaterangePickerModule
+                ng2_daterange_picker_1.DaterangePickerModule
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

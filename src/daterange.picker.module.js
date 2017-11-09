@@ -6,9 +6,18 @@ import { MatInputModule, MatCardModule, MatFormFieldModule } from '@angular/mate
 import { DaterangePickerComponent } from './ang.daterange.picker.component';
 import { DatePickerComponent } from './ang.datepicker.component';
 export * from './ang.daterange.picker.component';
-var DaterangePickerModule = /** @class */ (function () {
+var DaterangePickerModule = (function () {
     function DaterangePickerModule() {
     }
+    DaterangePickerModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [DaterangePickerComponent, DatePickerComponent],
+                    exports: [DaterangePickerComponent],
+                    imports: [CommonModule, FormsModule, HttpModule, ReactiveFormsModule, MatCardModule, MatInputModule, MatFormFieldModule]
+                },] },
+    ];
+    /** @nocollapse */
+    DaterangePickerModule.ctorParameters = function () { return []; };
     return DaterangePickerModule;
 }());
 export { DaterangePickerModule };
