@@ -8,14 +8,14 @@ export declare function jsonpFactory(jsonpBackend: JSONPBackend, requestOptions:
 /**
  * The module that includes http's providers
  *
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
 export declare class HttpModule {
 }
 /**
  * The module that includes jsonp's providers
  *
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
 export declare class JsonpModule {
 }

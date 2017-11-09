@@ -51,14 +51,13 @@ export declare const formDirectiveProvider: any;
 export declare class FormGroupDirective extends ControlContainer implements Form, OnChanges {
     private _validators;
     private _asyncValidators;
-    private _submitted;
+    readonly submitted: boolean;
     private _oldForm;
     directives: FormControlName[];
     form: FormGroup;
     ngSubmit: EventEmitter<{}>;
     constructor(_validators: any[], _asyncValidators: any[]);
     ngOnChanges(changes: SimpleChanges): void;
-    readonly submitted: boolean;
     readonly formDirective: Form;
     readonly control: FormGroup;
     readonly path: string[];

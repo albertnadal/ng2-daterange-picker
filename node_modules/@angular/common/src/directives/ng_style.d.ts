@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { DoCheck, ElementRef, KeyValueDiffers, Renderer } from '@angular/core';
+import { DoCheck, ElementRef, KeyValueDiffers, Renderer2 } from '@angular/core';
 /**
  * @ngModule CommonModule
  *
@@ -34,7 +34,7 @@ export declare class NgStyle implements DoCheck {
     private _renderer;
     private _ngStyle;
     private _differ;
-    constructor(_differs: KeyValueDiffers, _ngEl: ElementRef, _renderer: Renderer);
+    constructor(_differs: KeyValueDiffers, _ngEl: ElementRef, _renderer: Renderer2);
     ngStyle: {
         [key: string]: string;
     };

@@ -46,7 +46,7 @@ import { RequestArgs } from './interfaces';
  * });
  * ```
  *
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
 export declare class Request extends Body {
     /**

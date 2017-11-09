@@ -1,5 +1,5 @@
 /**
- * @experimental
+ * @deprecated use @angular/common/http instead
  **/
 export declare class QueryEncoder {
     encodeKey(k: string): string;
@@ -38,7 +38,7 @@ export declare class QueryEncoder {
  *
  * let params = new URLSearchParams('', new MyQueryEncoder());
  * ```
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
 export declare class URLSearchParams {
     rawParams: string;

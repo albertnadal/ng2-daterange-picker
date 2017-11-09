@@ -7,3 +7,5 @@ export declare function summaryForJitFileName(fileName: string, forceSourceFile?
 export declare function stripSummaryForJitFileSuffix(filePath: string): string;
 export declare function summaryForJitName(symbolName: string): string;
 export declare function stripSummaryForJitNameSuffix(symbolName: string): string;
+export declare function isLoweredSymbol(name: string): boolean;
+export declare function createLoweredSymbol(id: number): string;

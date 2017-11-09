@@ -86,6 +86,7 @@ export declare abstract class AbstractControlDirective {
      * a `blur` event on it.
      */
     readonly touched: boolean | null;
+    readonly status: string | null;
     /**
      * A control is `untouched` if the user has not yet triggered
      * a `blur` event on it.

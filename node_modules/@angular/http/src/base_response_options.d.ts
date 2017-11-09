@@ -26,7 +26,7 @@ import { ResponseOptionsArgs } from './interfaces';
  * console.log('res.json():', res.json()); // Object {name: "Jeff"}
  * ```
  *
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
 export declare class ResponseOptions {
     /**
@@ -115,7 +115,7 @@ export declare class ResponseOptions {
  * console.log('res.text():', res.text()); // Angular;
  * ```
  *
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
 export declare class BaseResponseOptions extends ResponseOptions {
     constructor();

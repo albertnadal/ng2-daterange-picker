@@ -13,7 +13,7 @@ import { BrowserXhr } from './browser_xhr';
  * This class would typically not be created or interacted with directly inside applications, though
  * the {@link MockConnection} may be interacted with in tests.
  *
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
 export declare class XHRConnection implements Connection {
     request: Request;
@@ -35,7 +35,7 @@ export declare class XHRConnection implements Connection {
  * with different `cookieName` and `headerName` values. See the main HTTP documentation for more
  * details.
  *
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
 export declare class CookieXSRFStrategy implements XSRFStrategy {
     private _cookieName;
@@ -67,7 +67,7 @@ export declare class CookieXSRFStrategy implements XSRFStrategy {
  *   }
  * }
  * ```
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
 export declare class XHRBackend implements ConnectionBackend {
     private _browserXHR;

@@ -9,15 +9,6 @@ export * from './ang.daterange.picker.component';
 var DaterangePickerModule = /** @class */ (function () {
     function DaterangePickerModule() {
     }
-    DaterangePickerModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [DaterangePickerComponent, DatePickerComponent],
-                    exports: [DaterangePickerComponent],
-                    imports: [CommonModule, FormsModule, HttpModule, ReactiveFormsModule, MatCardModule, MatInputModule, MatFormFieldModule]
-                },] },
-    ];
-    /** @nocollapse */
-    DaterangePickerModule.ctorParameters = function () { return []; };
     return DaterangePickerModule;
 }());
 export { DaterangePickerModule };

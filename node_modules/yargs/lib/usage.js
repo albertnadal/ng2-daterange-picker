@@ -3,6 +3,7 @@
 const stringWidth = require('string-width')
 const objFilter = require('./obj-filter')
 const setBlocking = require('set-blocking')
+const YError = require('./yerror')
 
 module.exports = function (yargs, y18n) {
   const __ = y18n.__
@@ -50,7 +51,7 @@ module.exports = function (yargs, y18n) {
         }
       }
 
-      err = err || new Error(msg)
+      err = err || new YError(msg)
       if (yargs.getExitProcess()) {
         return yargs.exit(1)
       } else if (yargs._hasParseCallback()) {
@@ -76,8 +77,15 @@ module.exports = function (yargs, y18n) {
   }
 
   var commands = []
-  self.command = function (cmd, description, aliases) {
-    commands.push([cmd, description || '', aliases])
+  self.command = function (cmd, description, isDefault, aliases) {
+    // the last default wins, so cancel out any previously set default
+    if (isDefault) {
+      commands = commands.map(function (cmdArray) {
+        cmdArray[2] = false
+        return cmdArray
+      })
+    }
+    commands.push([cmd, description || '', isDefault, aliases])
   }
   self.getCommands = function () {
     return commands
@@ -110,12 +118,11 @@ module.exports = function (yargs, y18n) {
   }
 
   function getWrap () {
-    // lazily call windowWidth() because it's very expensive,
-    // and only needs to be called if the user wants to show usage/help
     if (!wrapSet) {
       wrap = windowWidth()
       wrapSet = true
     }
+
     return wrap
   }
 
@@ -128,18 +135,22 @@ module.exports = function (yargs, y18n) {
   self.help = function () {
     normalizeAliases()
 
-    var demanded = yargs.getDemanded()
+    // handle old demanded API
+    var demandedOptions = yargs.getDemandedOptions()
+    var demandedCommands = yargs.getDemandedCommands()
     var groups = yargs.getGroups()
     var options = yargs.getOptions()
     var keys = Object.keys(
       Object.keys(descriptions)
-      .concat(Object.keys(demanded))
+      .concat(Object.keys(demandedOptions))
+      .concat(Object.keys(demandedCommands))
       .concat(Object.keys(options.default))
       .reduce(function (acc, key) {
         if (key !== '_') acc[key] = true
         return acc
       }, {})
     )
+
     var theWrap = getWrap()
     var ui = require('cliui')({
       width: theWrap,
@@ -162,8 +173,13 @@ module.exports = function (yargs, y18n) {
           {text: command[0], padding: [0, 2, 0, 2], width: maxWidth(commands, theWrap) + 4},
           {text: command[1]}
         )
-        if (command[2] && command[2].length) {
-          ui.div({text: '[' + __('aliases:') + ' ' + command[2].join(', ') + ']', padding: [0, 0, 0, 2], align: 'right'})
+        var hints = []
+        if (command[2]) hints.push('[' + __('default:').slice(0, -1) + ']') // TODO hacking around i18n here
+        if (command[3] && command[3].length) {
+          hints.push('[' + __('aliases:') + ' ' + command[3].join(', ') + ']')
+        }
+        if (hints.length) {
+          ui.div({text: hints.join(' '), padding: [0, 0, 0, 2], align: 'right'})
         } else {
           ui.div()
         }
@@ -231,7 +247,7 @@ module.exports = function (yargs, y18n) {
 
         var extra = [
           type,
-          demanded[key] ? '[' + __('required') + ']' : null,
+          (key in demandedOptions) ? '[' + __('required') + ']' : null,
           options.choices && options.choices[key] ? '[' + __('choices:') + ' ' +
             self.stringifiedValues(options.choices[key]) + ']' : null,
           defaultString(options.default[key], options.defaultDescription[key])
@@ -258,10 +274,24 @@ module.exports = function (yargs, y18n) {
       })
 
       examples.forEach(function (example) {
-        ui.div(
-          {text: example[0], padding: [0, 2, 0, 2], width: maxWidth(examples, theWrap) + 4},
-          example[1]
-        )
+        if (example[1] === '') {
+          ui.div(
+            {
+              text: example[0],
+              padding: [0, 2, 0, 2]
+            }
+          )
+        } else {
+          ui.div(
+            {
+              text: example[0],
+              padding: [0, 2, 0, 2],
+              width: maxWidth(examples, theWrap) + 4
+            }, {
+              text: example[1]
+            }
+          )
+        }
       })
 
       ui.div()
@@ -303,7 +333,8 @@ module.exports = function (yargs, y18n) {
   // make sure any options set for aliases,
   // are copied to the keys being aliased.
   function normalizeAliases () {
-    var demanded = yargs.getDemanded()
+    // handle old demanded API
+    var demandedOptions = yargs.getDemandedOptions()
     var options = yargs.getOptions()
 
     ;(Object.keys(options.alias) || []).forEach(function (key) {
@@ -311,7 +342,7 @@ module.exports = function (yargs, y18n) {
         // copy descriptions.
         if (descriptions[alias]) self.describe(key, descriptions[alias])
         // copy demanded.
-        if (demanded[alias]) yargs.demand(key, demanded[alias].msg)
+        if (alias in demandedOptions) yargs.demandOption(key, demandedOptions[alias])
         // type messages.
         if (~options.boolean.indexOf(alias)) yargs.boolean(key)
         if (~options.count.indexOf(alias)) yargs.count(key)
@@ -397,8 +428,12 @@ module.exports = function (yargs, y18n) {
 
   // guess the width of the console window, max-width 80.
   function windowWidth () {
-    const wsize = require('window-size')
-    return wsize.width ? Math.min(80, wsize.width) : null
+    var maxWidth = 80
+    if (typeof process === 'object' && process.stdout && process.stdout.columns) {
+      return Math.min(maxWidth, process.stdout.columns)
+    } else {
+      return maxWidth
+    }
   }
 
   // logic for displaying application version.
@@ -413,7 +448,7 @@ module.exports = function (yargs, y18n) {
     else logger.log(version)
   }
 
-  self.reset = function (globalLookup) {
+  self.reset = function (localLookup) {
     // do not reset wrap here
     // do not reset fails here
     failMessage = null
@@ -423,7 +458,7 @@ module.exports = function (yargs, y18n) {
     examples = []
     commands = []
     descriptions = objFilter(descriptions, function (k, v) {
-      return globalLookup[k]
+      return !localLookup[k]
     })
     return self
   }

@@ -1,16 +1,20 @@
 import { Observable } from 'rxjs/Observable';
-import { ResponseOptions } from '../base_response_options';
 import { ReadyState } from '../enums';
 import { Connection, ConnectionBackend } from '../interfaces';
 import { Request } from '../static_request';
 import { Response } from '../static_response';
-import { BrowserJsonp } from './browser_jsonp';
 /**
- * Abstract base class for an in-flight JSONP request.
+ * Base class for an in-flight JSONP request.
  *
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
-export declare abstract class JSONPConnection implements Connection {
+export declare class JSONPConnection implements Connection {
+    private _dom;
+    private baseResponseOptions;
+    private _id;
+    private _script;
+    private _responseData;
+    private _finished;
     /**
      * The {@link ReadyState} of this request.
      */
@@ -27,28 +31,15 @@ export declare abstract class JSONPConnection implements Connection {
      * Callback called when the JSONP request completes, to notify the application
      * of the new data.
      */
-    abstract finished(data?: any): void;
-}
-export declare class JSONPConnection_ extends JSONPConnection {
-    private _dom;
-    private baseResponseOptions;
-    private _id;
-    private _script;
-    private _responseData;
-    private _finished;
-    constructor(req: Request, _dom: BrowserJsonp, baseResponseOptions?: ResponseOptions);
     finished(data?: any): void;
 }
 /**
  * A {@link ConnectionBackend} that uses the JSONP strategy of making requests.
  *
- * @experimental
+ * @deprecated use @angular/common/http instead
  */
-export declare abstract class JSONPBackend extends ConnectionBackend {
-}
-export declare class JSONPBackend_ extends JSONPBackend {
+export declare class JSONPBackend extends ConnectionBackend {
     private _browserJSONP;
     private _baseResponseOptions;
-    constructor(_browserJSONP: BrowserJsonp, _baseResponseOptions: ResponseOptions);
     createConnection(request: Request): JSONPConnection;
 }

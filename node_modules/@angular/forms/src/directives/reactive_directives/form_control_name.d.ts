@@ -65,6 +65,7 @@ export declare const controlNameBinding: any;
  */
 export declare class FormControlName extends NgControl implements OnChanges, OnDestroy {
     private _added;
+    readonly control: FormControl;
     name: string;
     model: any;
     update: EventEmitter<{}>;
@@ -77,7 +78,6 @@ export declare class FormControlName extends NgControl implements OnChanges, OnD
     readonly formDirective: any;
     readonly validator: ValidatorFn | null;
     readonly asyncValidator: AsyncValidatorFn;
-    readonly control: FormControl;
     private _checkParentType();
     private _setUpControl();
 }
