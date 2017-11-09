@@ -237,7 +237,9 @@ var MetadataCollector = (function () {
             }
         });
         var isExportedIdentifier = function (identifier) { return exportMap.has(identifier.text); };
-        var isExported = function (node) { return isExport(node) || isExportedIdentifier(node.name); };
+        var isExported = function (node) {
+            return isExport(node) || isExportedIdentifier(node.name);
+        };
         var exportedIdentifierName = function (identifier) {
             return exportMap.get(identifier.text) || identifier.text;
         };

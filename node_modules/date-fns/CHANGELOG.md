@@ -10,6 +10,24 @@ This change log follows the format documented in [Keep a CHANGELOG].
 
 ## [Unreleased]
 
+## [1.29.0] - 2017-10-11
+
+### Fixed
+
+- Fix Italian translations for `formatDistance`. ([see the issue: #550](https://github.com/date-fns/date-fns/issues/550); [see the PR: #552](https://github.com/date-fns/date-fns/pull/552))
+  Thanks to [@giofilo](https://github.com/giofilo)!
+
+### Added
+
+- [Hungarian locale (hu)](https://github.com/date-fns/date-fns/pull/503)
+  (thanks to László Horváth [@horvathlg](https://github.com/horvathlg))
+
+- [Slovenian locale (sl)](https://github.com/date-fns/date-fns/pull/505)
+  (thanks to Adam Stradovnik [@Neoglyph](https://github.com/Neoglyph))
+
+- Add `step` to `eachDay` function. Thanks to [@BDav24](https://github.com/BDav24).
+  See PR [#487](https://github.com/date-fns/date-fns/pull/487).
+
 ## [1.28.5] - 2017-05-19
 
 ### Fixed
@@ -996,7 +1014,8 @@ This change log follows the format documented in [Keep a CHANGELOG].
 
 - `startOfDay`
 
-[Unreleased]: https://github.com/date-fns/date-fns/compare/v1.28.5...HEAD
+[Unreleased]: https://github.com/date-fns/date-fns/compare/v1.29.0...HEAD
+[1.29.0]: https://github.com/date-fns/date-fns/compare/v1.28.4...v1.29.0
 [1.28.5]: https://github.com/date-fns/date-fns/compare/v1.28.4...v1.28.5
 [1.28.4]: https://github.com/date-fns/date-fns/compare/v1.28.3...v1.28.4
 [1.28.3]: https://github.com/date-fns/date-fns/compare/v1.28.2...v1.28.3

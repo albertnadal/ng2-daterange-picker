@@ -34,6 +34,7 @@ exports.formatDiagnostics = formatDiagnostics;
  * Implementation of CompilerHost that forwards all methods to another instance.
  * Useful for partial implementations to override only methods they care about.
  */
+// tslint:disable:semicolon
 var DelegatingHost = (function () {
     function DelegatingHost(delegate) {
         var _this = this;

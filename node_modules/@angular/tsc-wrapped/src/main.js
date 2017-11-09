@@ -87,7 +87,7 @@ function main(project, cliOptions, codegen, options) {
                 addGeneratedFileName_1(indexName);
             host_1 = bundleHost;
         }
-        var tsickleCompilerHostOptions = { googmodule: false, untyped: true, convertIndexImportShorthand: true };
+        var tsickleCompilerHostOptions = { googmodule: false, untyped: true, convertIndexImportShorthand: false };
         var tsickleHost = {
             shouldSkipTsickleProcessing: function (fileName) { return /\.d\.ts$/.test(fileName); },
             pathToModuleName: function (context, importPath) { return ''; },

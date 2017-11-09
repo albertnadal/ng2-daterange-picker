@@ -40,7 +40,7 @@ describe('tsc-wrapped', function () {
             // No helpers since decorators were lowered
             expect(out).not.toContain('__decorate');
             // Expand `export *` and fix index import
-            expect(out).toContain("export { A, B } from './dep/index'");
+            expect(out).toContain("export { A, B } from './dep'");
             // Annotated for Closure compiler
             expect(out).toContain('* @param {?} x');
             // Comments should stay multi-line
@@ -75,7 +75,7 @@ describe('tsc-wrapped', function () {
             .then(function () {
             var out = readOut('js');
             // Expand `export *` and fix index import
-            expect(out).toContain("export { A, B } from './dep/index'");
+            expect(out).toContain("export { A, B } from './dep'");
             // Annotated for Closure compiler
             expect(out).toContain('* @param {?} x');
             done();
@@ -185,22 +185,22 @@ describe('tsc-wrapped', function () {
         })
             .catch(function (e) { return done.fail(e); });
     });
-    it('should expand shorthand imports for ES2015 modules', function (done) {
+    it('should not expand shorthand imports for ES2015 modules', function (done) {
         write('tsconfig.json', "{\n      \"compilerOptions\": {\n        \"experimentalDecorators\": true,\n        \"types\": [],\n        \"outDir\": \"built\",\n        \"declaration\": true,\n        \"moduleResolution\": \"node\",\n        \"target\": \"es2015\",\n        \"module\": \"es2015\"\n      },\n      \"angularCompilerOptions\": {\n        \"annotateForClosureCompiler\": true\n      },\n      \"files\": [\"test.ts\"]\n    }");
         main_1.main(basePath, { basePath: basePath })
             .then(function () {
             var fileOutput = readOut('js');
-            expect(fileOutput).toContain("export { A, B } from './dep/index'");
+            expect(fileOutput).toContain("export { A, B } from './dep'");
             done();
         })
             .catch(function (e) { return done.fail(e); });
     });
-    it('should expand shorthand imports for ES5 CommonJS modules', function (done) {
+    it('should not expand shorthand imports for ES5 CommonJS modules', function (done) {
         write('tsconfig.json', "{\n      \"compilerOptions\": {\n        \"experimentalDecorators\": true,\n        \"types\": [],\n        \"outDir\": \"built\",\n        \"declaration\": true,\n        \"moduleResolution\": \"node\",\n        \"target\": \"es5\",\n        \"module\": \"commonjs\"\n      },\n      \"angularCompilerOptions\": {\n        \"annotateForClosureCompiler\": true\n      },\n      \"files\": [\"test.ts\"]\n    }");
         main_1.main(basePath, { basePath: basePath })
             .then(function () {
             var fileOutput = readOut('js');
-            expect(fileOutput).toContain("var index_1 = require(\"./dep/index\");");
+            expect(fileOutput).toContain("var dep_1 = require(\"./dep\");");
             done();
         })
             .catch(function (e) { return done.fail(e); });

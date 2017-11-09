@@ -205,7 +205,9 @@ var TypeCheckingHost = (function () {
     TypeCheckingHost.prototype.getDefaultLibFileName = function (options) {
         return this.host.getDefaultLibFileName(options);
     };
-    TypeCheckingHost.prototype.getCurrentDirectory = function () { return this.host.getCurrentDirectory(); };
+    TypeCheckingHost.prototype.getCurrentDirectory = function () {
+        return this.host.getCurrentDirectory();
+    };
     TypeCheckingHost.prototype.getDirectories = function (path) { return this.host.getDirectories(path); };
     TypeCheckingHost.prototype.getCanonicalFileName = function (fileName) {
         return this.host.getCanonicalFileName(fileName);
