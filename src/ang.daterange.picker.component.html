@@ -1,64 +1,48 @@
 <div class="ang-daterange-picker" style="z-index: 1000; min-height: 328px; position: relative; width: 810px;">
-
-    <mat-card style="width:100%;min-height:328px;padding-top:1px;">
-
-      <div style="position: absolute; width: 180px; height: 300px;">
-        <table style="margin-top: 1.9em; width:100%;">
-          <tr>
-            <td>FROM</td>
-          </tr>
+  <mat-card style="width:100%;min-height:328px;padding-top:1px;">
+    <div style="position: absolute; width: 180px; height: 300px;">
+      <table style="margin-top: 1.9em; width:100%;">
+        <tr>
+          <td>FROM</td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field style="width:100%">
+              <input matInput disabled value="" [(ngModel)]="startDateText">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>TO</td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field style="width:100%">
+              <input matInput disabled value="" [(ngModel)]="endDateText">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <div style="bottom:0px;">
+        <table style="width:100%">
           <tr>
             <td>
-              <mat-form-field style="width:100%">
-                <input matInput disabled value="" [(ngModel)]="startDateText">
-              </mat-form-field>
+              <button mat-button [disabled]="!startDateText || !endDateText" color="primary" (click)="onApplySelectedDateRange()">Apply
+              </button>
             </td>
-          </tr>
-          <tr>
-            <td>TO</td>
-          </tr>
-          <tr>
             <td>
-              <mat-form-field style="width:100%">
-                <input matInput disabled value="" [(ngModel)]="endDateText">
-              </mat-form-field>
+              <button mat-button (click)="onCloseContextualMenu()">Cancel
+              </button>
             </td>
           </tr>
         </table>
-        <div style="bottom:0px;">
-          <table style="width:100%">
-            <tr>
-              <td>
-                  <button mat-button
-                          [disabled]="!startDateText || !endDateText"
-                          color="primary"
-                          (click)="onApplySelectedDateRange()">Apply
-                  </button>
-              </td>
-              <td>
-                  <button mat-button
-                          (click)="onCloseContextualMenu()">Cancel
-                  </button>
-              </td>
-            </tr>
-          </table>
-        </div>
       </div>
-      <div style="margin-left:180px">
-        <ang-datepicker [(date)]="startDate"
-                        (onSelect)="onSelectStartDate($event)"
-                        dateFormat="YYYY-MM-DD"
-                        [endDate]="endDate"
-                        [startDate]="startDate">
-        </ang-datepicker>
-        <ang-datepicker [(date)]="endDate"
-                        (onSelect)="onSelectEndDate($event)"
-                        dateFormat="YYYY-MM-DD"
-                        [endDate]="endDate"
-                        [startDate]="startDate">
-        </ang-datepicker>
-      </div>
-
-    </mat-card>
-
+    </div>
+    <div style="margin-left:180px">
+      <ang-datepicker [(date)]="startDate" (onSelect)="onSelectStartDate($event)" dateFormat="YYYY-MM-DD" [endDate]="endDate" [startDate]="startDate">
+      </ang-datepicker>
+      <ang-datepicker [(date)]="endDate" (onSelect)="onSelectEndDate($event)" dateFormat="YYYY-MM-DD" [endDate]="endDate" [startDate]="startDate">
+      </ang-datepicker>
+    </div>
+  </mat-card>
 </div>
