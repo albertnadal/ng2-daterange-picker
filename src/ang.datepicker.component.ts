@@ -219,7 +219,7 @@ export class DatePickerComponent implements OnInit, OnChanges {
   }
 
   filterInvalidDays(calendarDays: Array<number>): Array<number> {
-    let newCalendarDays = [];
+    let newCalendarDays: any = [];
     calendarDays.forEach((day: number | Date) => {
       if (day === 0) {
         newCalendarDays.push(0)

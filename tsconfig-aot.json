@@ -9,12 +9,16 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "types": [ "es6-shim" ]
+    "types": [ "core-js" , "jasmine" ],
+    "lib": ["es2015", "es2017", "dom"],
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
   },
-
+  "exclude": [ "node_modules", "**/*.ngfactory.*" ],
   "files": [
-    "integration-test/app.module.ts",
-    "integration-test/main.ts"
+    "./src/daterange.picker.module.ts",
+    "./src/main.ts"
   ],
 
   "angularCompilerOptions": {
