@@ -1,4 +1,4 @@
-var Calendar = (function () {
+var Calendar = /** @class */ (function () {
     function Calendar(firstWeekDay) {
         if (firstWeekDay === void 0) { firstWeekDay = 0; }
         this.firstWeekDay = firstWeekDay; // 0 = Sunday

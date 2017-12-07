@@ -1,7 +1,7 @@
 import { animate, Component, ElementRef, EventEmitter, Input, keyframes, Output, Renderer, style, transition, trigger } from '@angular/core';
 import { Calendar } from './ang.calendar';
 import * as moment from 'moment';
-var DatePickerComponent = (function () {
+var DatePickerComponent = /** @class */ (function () {
     function DatePickerComponent(renderer, elementRef) {
         var _this = this;
         this.renderer = renderer;

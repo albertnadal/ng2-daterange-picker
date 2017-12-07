@@ -1,5 +1,5 @@
 import { Component, ElementRef, Output, EventEmitter } from '@angular/core';
-var DaterangePickerComponent = (function () {
+var DaterangePickerComponent = /** @class */ (function () {
     function DaterangePickerComponent(_el) {
         this.startDateText = '';
         this.endDateText = '';
